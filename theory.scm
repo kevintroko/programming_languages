@@ -94,3 +94,25 @@
 )
 
 ; Logical Operations
+(and <e 1> ... <e n>)
+(or <e 1 > ... <e n >)
+(not <e>)
+
+; Greater or equal definition
+(define 
+(>= x y)
+   (or (> x y) (= x y))
+)
+
+; Minor or equal definition
+(define 
+(<= x y)
+   (or (< x y) (= x y))
+)
+
+; AND
+(define
+(booleanOp x)
+    (and (> x 5) (< x 10)) 
+)
+
