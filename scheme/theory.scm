@@ -17,18 +17,6 @@
 (exp 3)
 (log 5)
 
-; Circle Radio
-(define 
-(circleRadio r)
-    (* pi (* r r))
-)
-
-; Square
-(define 
-(square x)
-    (* x x)    
-)
-
 ; Two functions in one
 (define 
 (sumOfSquares x y)
@@ -93,7 +81,7 @@
     )
 )
 
-; Logical Operations
+; Logical Operations AND, OR and NOT
 (and <e 1> ... <e n>)
 (or <e 1 > ... <e n >)
 (not <e>)
@@ -116,3 +104,81 @@
     (and (> x 5) (< x 10)) 
 )
 
+; One can prevent Scheme interpreter from evaluating
+; a parenthesized expression by quoting it:
+(quote ten) 
+
+; or
+'ten
+
+; List constructor
+(cons 1 '())
+
+;or
+(cons 1 (quote ()))
+
+; Assigning list to variables
+(define lstl (cons 1 '()))
+
+; Assigning
+(cons 2 lstl)
+
+; Binding
+(define lstl2 (cons 2 lstl))
+
+; Shorcuts
+(cons 2 (cons 1 '()))
+
+; Bind shorcut
+(define lstl3 (cons 2 (cons 1 '())))
+
+; Parenthesis
+'(three 2 1)
+
+; Car returns first element, this case 1
+(car '(1 2 3 4))
+
+; CANT car an empty list
+!INVALID! (car '()) !INVALID!
+
+; Car 1.1 : returns a
+(car '(a b c d))
+
+; Car 1.2 : returns (2 1)
+(define ls4 '((2 1) 1 2 3))
+(car ls4)
+
+; Car 1.3 : returns (1)
+(car '((1) (2) (3) (4)))
+
+; Car 1.4 : returns ab
+(car '(ab (cd ef) gh))
+
+; Car 1.5 : returns ((hen cow pig))
+(car '(((hen cow pig))))
+
+; Car 1.6 : returns a
+(car '(()))
+
+; cdr removes first element of a list: (2 3 4)
+(cdr '(1 2 3 4))
+
+; cdr 1.1: returns (1 2 3)
+(cdr ls4) 
+
+; cdr 1.2: returns ((b c) (d e f))
+(cdr '(a (b c) (d e f)))
+
+; cdr 1.3: returns ((bee hive) (wasp nest))
+(cdr '((ant hill) (bee hive) (wasp nest)))
+
+; cdr 1.4: returns ()
+(cdr '(1))
+
+; cdr 1.5: returns ()
+(cdr '((1 2)))
+
+; cdr 1.6: returns ()
+(cdr '(()))
+
+; Predicates on list in Scheme
