@@ -32,6 +32,19 @@
         )
 )
 
+(define (elemento-n n lista)
+    (if (and (number? n) (and (list? lista) (pair? lista)))
+        (elemento-n-helper n lista)
+        #f
+    )
+)
+(define (elemento-n-helper n lista)
+    (cond 
+        [(= n 0) (car lista)]
+        [else (elemento-n (- n 1) (cdr lista))]
+    )
+)
+
 ; Define la funcion iterativa suma-lista la cual recibe un parametro lista.
 ; lista no es vacia, la funcion valida cada uno de los elementos en lista.
 ; Si el elemeto no es numerico la funcion lo ignora, en caso contrario 
@@ -63,10 +76,24 @@
 ; las ocurrencias de e. Es necesario validar que los valores de los parametros
 ; sean correctos, cualquier caso regresa #f.
 (define (elimina-elemento e l)
-        (if [and (pair? l) (or (number? e) (symbol? e))]
-            e
-            #f
-        )
+    (elimina-elemento-helper e l '())
+)
+(define (elimina-elemento-helper e l1 l2)
+    (cond 
+        [(= (length l1) 0) (reverse l2)]
+        [else 
+        (if (= (car l1) e)
+        (elimina-elemento-helper e (cdr l1) l2)
+        (elimina-elemento-helper e (cdr l1) (cons (car l1) l2))
+        )]
+    )
+)
+
+(define (reverse-list l l2)
+    (cond 
+        [(= (length l) 0) l2]
+        [else (reverse-list (cdr l) (cons (car l) l2))]
+    )
 )
 
 ; Define la funcion iterativa suma-x, la cual recibe dos parametros a y b.
@@ -86,4 +113,3 @@
         (* x (not-expt-function x (- n 1)))
     )
 )
-
