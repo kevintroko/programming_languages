@@ -20,26 +20,36 @@
 ; Define funcion recursiva elemento-n la cual recibe 2 parametros, n y lista
 ; n es un entero mayor a cero, lista es una lista no vacia. la funcion
 ; regresa el elemento en la posicion n de la lista. Es necesario validar 
-; que los valores de los parametros sean correctos, culaquier caso regresa #f
+; que los valores de los parametros sean correctos
+; cualquier caso regresa #f
 (define (elemento-n n lista)
-        (if (and (and (number? n) (> n 0))(and (list? lista) (pair? lista)))
-            (if (> n 0)
-             (car (lista))
+        (if (and (number? n) (and (list? lista) (pair? lista)))
+            (cond 
+                [(= n 0) (car lista)]
+                [else (elemento-n (- n 1) (cdr lista))]
             )
             #f
         )
 )
 
 ; Define la funcion iterativa suma-lista la cual recibe un parametro lista.
-; lista no es vacia, la funciion valida cada uno de los elementos en lista.
+; lista no es vacia, la funcion valida cada uno de los elementos en lista.
 ; Si el elemeto no es numerico la funcion lo ignora, en caso contrario 
 ; los suma en posiciones pares y resta en posiciones nones. Es necesario 
 ; validar que los parametros sean correctos, cualquier otro regresa #f
 (define (suma-lista l)
-        (if (pair? l)
-            (car l)
-            #f
-        )
+    (suma-lista-helper l 0)
+)
+(define (suma-lista-helper l count)
+    (cond
+        [ (= (length l) 0)  count ]
+        [ else 
+           (if (even? (length l))
+           (suma-lista-helper (cdr l) (+ count (car l)))
+           (suma-lista-helper (cdr l) (- count (car l)))
+           )
+        ]
+    )
 )
 
 ; Define la funcion recursiva elimina-elemento, el cual recibe dos parametros
@@ -71,3 +81,4 @@
         (* x (not-expt-function x (- n 1)))
     )
 )
+
