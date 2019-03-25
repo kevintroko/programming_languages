@@ -38,16 +38,21 @@
 ; los suma en posiciones pares y resta en posiciones nones. Es necesario 
 ; validar que los parametros sean correctos, cualquier otro regresa #f
 (define (suma-lista l)
-    (suma-lista-helper l 0)
+    (if (pair? l)
+        (suma-lista-helper l 0)
+        #f
+    )
 )
 (define (suma-lista-helper l count)
     (cond
         [ (= (length l) 0)  count ]
-        [ else 
+        [ (number? (car l)) 
            (if (even? (length l))
            (suma-lista-helper (cdr l) (+ count (car l)))
            (suma-lista-helper (cdr l) (- count (car l)))
            )
+        ][ else
+           (suma-lista-helper (cdr l) count)
         ]
     )
 )

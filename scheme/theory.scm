@@ -152,7 +152,7 @@
 (car '(ab (cd ef) gh))
 ; Car 1.5 : returns ((hen cow pig))
 (car '(((hen cow pig))))
-; Car 1.6 : returns a
+; Car 1.6 : returns ()
 (car '(()))
 
 ; cdr removes first element of a list: (2 3 4)
