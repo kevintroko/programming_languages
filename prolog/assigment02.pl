@@ -8,14 +8,26 @@
 % ----------------------------------------------------------------------
 
 % 1. Write a predicate print every second/1 to print every other element in a list, beginning at the second element —i.e. the 2nd, 4th, 6th elements etc. 
-% It should always succeed provided it is given a list as its argument.
+printeverysecond([X]). % It should succeed given a list.
 printeverysecond([]).
-printeverysecond([X]).
 printeverysecond([X, Y| T]):-
     write(Y),printeverysecond(T).
 
 % 2. Write a predicate deconsonant/1 to print any element of a list that isn’t a consonant (i.e. we want to print out the vowels fa,e,i,o,ug). 
 % It should always succeed provided it is given a list as its argument (we assume that the input list only contains vowels and consonants).
+deconsonant([]).
+deconsonant([X|Y]):-
+    vowel(X),
+    write(X),
+    deconsonant(Y).
+deconsonant([X|Y]):-
+    deconsonant(Y).
+% Knowledge Base
+vowel(a).
+vowel(e).
+vowel(i).
+vowel(o).
+vowel(u).
 
 % 3. Write a predicate head/2 which takes a list as its first argument and returns the head of the list as its second argument. 
 % It should fail if there is no first element.
@@ -26,10 +38,24 @@ head([X|Y], X).
 tail([X|Y], Y).
 
 % 5. Write a predicate last/2 which takes a list as its first argument and returns the last element of the list.
+% L = List and Z = Last
+last(L, Z) :- append(X, [Z], L).
 
-% 6. Write a predicate max/3 which takes three arguments, the first two are positive integer numbers and returns in the third the max of them.
+% 6. Write a predicate max/3 which takes three arguments, 
+% the first two are positive integer numbers and returns in the third the max of them.
+max(A, B, X) :-
+    (A < B -> X is B; 
+     A > B -> X is A
+).
 
 % 7. Write a predicate fact/2 which takes a natural number as first argument, and returns the factorial of the number.
+% Based on https://www.quora.com/How-can-you-write-a-pseudocode-for-a-factorial-number
+fact(0,1).
+fact(N, F):-
+    N > 0,
+    N1 is N-1,
+    fact(N1, F1),
+    F is N * F1.
 
 % 8. Write a predicate fib/2 which takes a natural number as first argument, and returns the value of the Fibonacci sequence for that position (counting from 1).
 fib(0,0).
@@ -56,6 +82,18 @@ len([_|L], R):-
 
 % 12. Write a predicate vowels/2 which takes a list as its first argument and returns a list (as its second argument) 
 % which consists of the elements of the input list which are a vowel (we assume that the input list only contains vowels and consonants).
+% Similar to #2
+vowels([], []).
+vowels([H|T], [H|Rest]):-
+    vowel(H),
+    vowels(T, Rest).
+    vowels([H|T], Rest):-
+        vowels(T, Rest).
+    vowel(a).
+    vowel(e).
+    vowel(i).
+    vowel(o).
+    vowel(u).
 
 % 13. Define nple/3 to take two inputs —an integer and a list of integers. The result is to be a list of integers formed by multiplying 
 % each integer in the list by the input integer.
