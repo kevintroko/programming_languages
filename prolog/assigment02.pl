@@ -7,13 +7,23 @@
 % few clauses. Each of the problems is a list processing problem.
 % ----------------------------------------------------------------------
 
-% 1. Write a predicate print every second/1 to print every other element in a list, beginning at the second element —i.e. the 2nd, 4th, 6th elements etc. It should always succeed provided it is given a list as its argument.
+% 1. Write a predicate print every second/1 to print every other element in a list, beginning at the second element —i.e. the 2nd, 4th, 6th elements etc. 
+% It should always succeed provided it is given a list as its argument.
+printeverysecond([]).
+printeverysecond([X]).
+printeverysecond([X, Y| T]):-
+    write(Y),printeverysecond(T).
 
-% 2. Write a predicate deconsonant/1 to print any element of a list that isn’t a consonant (i.e. we want to print out the vowels fa,e,i,o,ug). It should always succeed provided it is given a list as its argument (we assume that the input list only contains vowels and consonants).
+% 2. Write a predicate deconsonant/1 to print any element of a list that isn’t a consonant (i.e. we want to print out the vowels fa,e,i,o,ug). 
+% It should always succeed provided it is given a list as its argument (we assume that the input list only contains vowels and consonants).
 
-% 3. Write a predicate head/2 which takes a list as its first argument and returns the head of the list as its second argument. It should fail if there is no first element.
+% 3. Write a predicate head/2 which takes a list as its first argument and returns the head of the list as its second argument. 
+% It should fail if there is no first element.
+head([X|Y], X).
 
-% 4. Write a predicate tail/2 which takes a list as its first argument and returns the tail of the list as its second argument. It should fail if there is no first element.
+% 4. Write a predicate tail/2 which takes a list as its first argument and returns the tail of the list as its second argument. 
+%It should fail if there is no first element.
+tail([X|Y], Y).
 
 % 5. Write a predicate last/2 which takes a list as its first argument and returns the last element of the list.
 
@@ -52,7 +62,13 @@ len([_|L], R):-
 
 % 14. Define del all/3 which takes a possible element of a list and a list as inputs and returns the list with all occurences of the named element removed. (If the named element is not in the list then the result is, of course, the whole list with no deletions)
 
-% 15. Write a predicate find every second/2 which takes a list as its first argument and returns a list (as its second argument) which consists of every other element of the input list starting at the second element.
+% 15. Write a predicate find every second/2 which takes a list as its first argument and returns a list (as its second argument) 
+% which consists of every other element of the input list starting at the second element.
+findeverysecond([], []).
+findeverysecond([X], []).
+findeverysecond([X, Y|T], [Y| Rest]):-
+    write(Y),
+    findeverysecond(T, Rest).
 
 % 16. Define sum/2 to take a list of integers as input and return the output as their sum.
 
