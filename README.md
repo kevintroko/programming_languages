@@ -12,6 +12,4 @@ Kevin Oswaldo Cabrera Navarro A01227157
 ## Prolog Exercises
 - **Assigment 02** [here](prolog/assigment02.pl)
 
-Missing: 10, 11, 13, 14, 16, 17, 18, 19, 20.
-
 - **Assigment 03** [here](prolog/assigment03.pl)
